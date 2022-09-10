@@ -1,0 +1,46 @@
+/*Задача 52. Задайте двумерный массив из целых чисел. Найдите среднее арифметическое элементов в каждом столбце.
+Например, задан массив:
+1 4 7 2
+5 9 2 3
+8 4 2 4
+Среднее арифметическое каждого столбца: 4,6; 5,6; 3,6; 3.*/
+
+System.Console.WriteLine(" введите количество строк..."); ///вводим данные
+int linesVol = Convert.ToInt32(Console.ReadLine());       ///создаем переменные для введеных данных 
+System.Console.WriteLine(" ввести количество столбцов..."); ///вводим данные
+int columnsVol = Convert.ToInt32(Console.ReadLine());        /// создаем переменные для вводимых данных
+System.Console.WriteLine();
+int [ , ] array = new int [linesVol, columnsVol];       /// создаем массив
+FillArrayRandomArray(array);                                 /// метод для заполнения массива рандомными числами
+PrintArray(array); 
+for(int j =0; j<array.GetLength(1); j++) 
+{
+    int mean = 0;
+    for(int i =0; i<array.GetLength(0); i++) 
+    {
+        mean = (mean + array[i,j]);
+    }
+    mean = mean/columnsVol;
+    System.Console.Write(mean + ";");
+}
+System.Console.WriteLine();
+void FillArrayRandomArray(int[ , ] array)
+{
+    for(int i =0; i<array.GetLength(0); i++)                ///заполняем строки
+    {
+        for(int j =0; j<array.GetLength(1); j++)            ///заполнем столбцы
+        {
+            array[i,j] = new Random().Next(0,10);   ///рандомное заполнение по формуле
+        }
+    }
+}
+void PrintArray(int[ , ] array){                                         /// печать
+    for(int i=0; i<array.GetLength(0); i++)                                 ///бежим по строкам
+    {
+        for(int j=0; j<array.GetLength(1); j++)                             ///бежим по столбцам
+        {
+            System.Console.Write(array [i,j]+"\t");                        ///вывод массива \t это для вывода табличкой
+        }
+        System.Console.WriteLine();
+    }
+}
